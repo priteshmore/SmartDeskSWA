@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using BlazorApp.Client.Utility
+@inherits LayoutComponentBase
+@inject ThemeSetup themeSetp
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
@@ -35,15 +37,14 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        _theme = new()
-        {
-            PaletteLight = _lightPalette,
-            PaletteDark = _darkPalette,
-            LayoutProperties = new LayoutProperties()
-        };
+        _theme = themeSetp.CurrentTheme;
+        // _theme = new()
+        // {
+        //     PaletteLight = _lightPalette,
+        //     PaletteDark = _darkPalette,
+        //     LayoutProperties = new LayoutProperties()
+        // };
     }
-
 
     private void DrawerToggle()
     {

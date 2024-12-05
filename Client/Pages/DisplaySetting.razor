@@ -1,0 +1,56 @@
+﻿@page "/displaysetting"
+@inject ThemeSetup themeSetp
+
+<MudPaper Class="pa-4">
+    <MudStack Spacing="2">
+        <MudButton OnClick="OnDarkModeExpandCollapseClick">Dark Mode</MudButton>
+        <MudDivider />
+        <MudCollapse Expanded="_DarkModeExpanded">
+            <MudColorPicker Label="Background Color" @bind-Text="_colorValue" Style="@($"color: {_colorValue};")" Placeholder="Select Color" />
+            <MudColorPicker Label="Text Color" @bind-Text="_TextcolorValue" Style="@($"color: {_TextcolorValue};")" Placeholder="Select Color" />
+        </MudCollapse>
+    </MudStack>
+</MudPaper>
+<MudDivider />
+<MudPaper Class="pa-4">
+    <MudStack Spacing="2">
+        <MudButton OnClick="OnLightModeExpandCollapseClick">Light Mode</MudButton>
+        <MudDivider />
+        <MudCollapse Expanded="_LightModeExpanded">
+            This content is collapsible.
+        </MudCollapse>
+    </MudStack>
+</MudPaper>
+<MudDivider />
+
+<MudPaper Class="pa-4">
+    <MudStack Spacing="2">
+        <MudButton OnClick="OnApply">Apply</MudButton>
+    </MudStack>
+</MudPaper>
+
+
+@code {
+    bool _DarkModeExpanded = true;
+    bool _LightModeExpanded = true;
+    private string _colorValue;
+    private string _TextcolorValue;
+
+    private void OnDarkModeExpandCollapseClick()
+    {
+        _DarkModeExpanded = !_DarkModeExpanded;
+       
+    }
+
+
+    private void OnLightModeExpandCollapseClick()
+    {
+        _LightModeExpanded = !_LightModeExpanded;
+    }
+
+    private void OnApply()
+    {
+        themeSetp.CurrentTheme.PaletteDark.Background = _colorValue;
+        themeSetp.CurrentTheme.PaletteDark.TextPrimary = _TextcolorValue;
+    }
+}
