@@ -1,33 +1,28 @@
 ﻿@page "/displaysetting"
 @inject ThemeSetup themeSetp
 
-<MudPaper Class="pa-4">
-    <MudStack Spacing="2">
-        <MudButton OnClick="OnDarkModeExpandCollapseClick">Dark Mode</MudButton>
-        <MudDivider />
-        <MudCollapse Expanded="_DarkModeExpanded">
-            <MudColorPicker Label="Background Color" @bind-Text="_colorValue" Style="@($"color: {_colorValue};")" Placeholder="Select Color" />
-            <MudColorPicker Label="Text Color" @bind-Text="_TextcolorValue" Style="@($"color: {_TextcolorValue};")" Placeholder="Select Color" />
-        </MudCollapse>
-    </MudStack>
-</MudPaper>
-<MudDivider />
-<MudPaper Class="pa-4">
-    <MudStack Spacing="2">
-        <MudButton OnClick="OnLightModeExpandCollapseClick">Light Mode</MudButton>
-        <MudDivider />
-        <MudCollapse Expanded="_LightModeExpanded">
-            This content is collapsible.
-        </MudCollapse>
-    </MudStack>
-</MudPaper>
-<MudDivider />
+<MudExpansionPanels MultiExpansion="true">
+    <MudExpansionPanel Text="Dark Mode">
+        <MudColorPicker Label="Background Color" @bind-Text="_colorValue" Style="@($"color: {_colorValue};")" Placeholder="Select Color" />
+        <MudColorPicker Label="Text Color" @bind-Text="_TextcolorValue" Style="@($"color: {_TextcolorValue};")" Placeholder="Select Color" />
+    </MudExpansionPanel>
+    <MudExpansionPanel Text="Panel Two">
+        Panel Two Content
+    </MudExpansionPanel>
+    <MudExpansionPanel Text="Panel Three">
+        Panel Three Content
+    </MudExpansionPanel>
+    <MudExpansionPanel Text="Panel Four">
+        Panel Four Content
+    </MudExpansionPanel>
+</MudExpansionPanels>
 
 <MudPaper Class="pa-4">
     <MudStack Spacing="2">
         <MudButton OnClick="OnApply">Apply</MudButton>
     </MudStack>
 </MudPaper>
+
 
 
 @code {
