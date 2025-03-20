@@ -1,0 +1,26 @@
+﻿@inject IJSRuntime JS
+
+<MudCard>
+    <MudCardContent>
+        <textarea id="tinymce-editor"></textarea>
+        <MudButton OnClick="SaveContent" Color="Color.Primary">Save</MudButton>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    private string editorContent = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initializeTinyMCE");
+        }
+    }
+
+    private async Task SaveContent()
+    {
+        editorContent = await JS.InvokeAsync<string>("getTinyMCEContent");
+        Console.WriteLine("Saved Content: " + editorContent);
+    }
+}

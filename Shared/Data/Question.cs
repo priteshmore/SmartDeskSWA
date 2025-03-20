@@ -9,6 +9,6 @@ namespace BlazorApp.Shared.Data
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public Answer AnswerData { get; set; }
+        public Answer AnswerData { get; set; } = new Answer();
     }
 }

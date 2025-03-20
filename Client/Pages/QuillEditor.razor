@@ -1,0 +1,26 @@
+﻿@inject IJSRuntime JS
+
+<MudCard>
+    <MudCardContent>
+        <div id="editor" style="height: 250px;"></div>
+        <MudButton OnClick="SaveContent" Color="Color.Primary">Save</MudButton>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    private string editorContent = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initializeQuill");
+        }
+    }
+
+    private async Task SaveContent()
+    {
+        editorContent = await JS.InvokeAsync<string>("getQuillContent");
+        Console.WriteLine("Saved Content: " + editorContent);
+    }
+}
